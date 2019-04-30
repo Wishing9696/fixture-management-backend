@@ -51,95 +51,56 @@ module.exports = {
           fs.push({
             id: f[0].id,
             name: f[0].name,
-            number: ff.number
+            number: ff.number,
+            type: f[0].type
           })
         }
-
         plansaddfixture.push({
           id: pitem.id,
           name: product[0].name,
           startdate: pitem.startdate,
           enddate: pitem.enddate,
+          startdateymd: handledate(pitem.startdate),
+          enddateymd: handledate(pitem.enddate),
           fixtures: fs
         })
       }
-      console.log(plansaddfixture)
       for (let paf of plansaddfixture) {
-        console.log(paf)
-        for (f of paf.fixtures) {
-          console.log(f)
+        for (let f of paf.fixtures) {
+          let i = 0
           for (let c of cs) {
-            console.log(c)
             if (f.id === c.id) {
+              i++
               c.number += f.number
-            } else {
-              c.push(f)
             }
+          }
+          if (i == 0) {
+            let data = {}
+            Object.assign(data, f)
+            cs.push(data)
           }
         }
       }
-      console.log(c)
-
       let result = {
-        line: ps[0].line,
+        line: plans[0].line,
         date: date,
+        dateymd: handledate(date),
         plans: plansaddfixture,
-        count: c
+        count: cs
       }
       res.send(result)
     } catch (e) {
       res.status(400).send
     }
-  }
+  },
 };
 
-
-async function handleall(planids) {
-  for (let id in planids) {
-    let plans = await Plan.find({
-      id: id
-    })
-    /**
-     * return text like：
-     * [
-     *  {
-     *    id:"",
-     *    pn:"",
-     *    line:"",
-     *    startdate:"",
-     *    enddate:""
-     *  },{.......}
-     * ]
-     */
-    for (let p in plans) {
-      let pt = findProductBypn(p.pn)
-    }
-  }
-}
-
-async function findFixtureByid(id) {
-  let f = await Fixture.find({
-    id: id
-  })
-  return f
-}
-async function findProductBypn(pn) {
-  /**
-   * return text like；
-   * [{
-   *    id:"",
-   *    pn:"",
-   *    name:"",
-   *    fixxtrues:[
-   *      {
-   *        id:"",
-   *        number:""
-   *      },{......}
-   *    ]
-   *  }，{......}
-   * ]
-   */
-  let p = await Product.find({
-    pn: pn
-  })
+function handledate(d) {
+  let dd = new Date(parseInt(d));
+  let year = dd.getFullYear();
+  let month = dd.getMonth() + 1;
+  let day = dd.getDate();
+  month = month < 10 ? "0" + month : month;
+  day = day < 10 ? "0" + day : day;
+  return year + '-' + month + '-' + day;
 }

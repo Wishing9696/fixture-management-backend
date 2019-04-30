@@ -49,6 +49,10 @@ module.exports.routes = {
   'POST /plan/getPlansDetailsByIds' : 'PlanController.getPlansDetailsByIds',
 
   'GET /product/getConfigById' : 'ProductController.getConfigById',
+
+  'GET /adjustment/getAdjustmentsByDate' : 'Adjustment.getAdjustmentsByDate',
+
+  'GET /product/getProductByPlanIdentfier' : 'Product.getProductByPlanIdentfier'
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
