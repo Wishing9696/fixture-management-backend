@@ -52,7 +52,11 @@ module.exports.routes = {
 
   'GET /adjustment/getAdjustmentsByDate' : 'Adjustment.getAdjustmentsByDate',
 
-  'GET /product/getProductByPlanIdentfier' : 'Product.getProductByPlanIdentfier'
+  'GET /product/getProductByPlanIdentfier' : 'Product.getProductByPlanIdentfier',
+
+  'GET /adjustment/getFixtureList' : 'Adjustment.getFixtureList',
+
+  'GET /adjustment/getDetailByDateAndFixtureName' : 'Adjustment.getDetailByDateAndFixtureName'
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
   //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
