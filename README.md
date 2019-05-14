@@ -1,11 +1,11 @@
 # fixture-management-backend
 
-###调配系统后端
+### 调配系统后端
 
-####技术栈：
+#### 技术栈：
 Sails.js
 
-###CORS 跨域问题
+### CORS 跨域问题
 see in ./config/env/production.js and ./config/locales/security.js
  ALlRoutes: true instead of false 
 
